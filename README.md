@@ -1,4 +1,4 @@
 # Negative_Feedback_only
 0 n é numero de alpha
 
-Olá tudo bem?
+U DONT WANT TO SEE THE HEAVYSIDE
