@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 2.9.7300 64-bit) (preloaded format=xelatex 2020.3.16)  29 MAY 2020 21:25
+This is XeTeX, Version 3.14159265-2.6-0.999992 (MiKTeX 2.9.7300 64-bit) (preloaded format=xelatex 2020.3.16)  29 MAY 2020 23:04
 entering extended mode
 **./openloop.tex
 (openloop.tex
@@ -846,25 +846,22 @@ Overfull \hbox (25.23946pt too wide) in paragraph at lines 71--72
 [][]
  []
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 84.
 [6]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 84.
+ [7]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 84.
  (openloop.aux)
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 84.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 84.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 84.
  ) 
 Here is how much of TeX's memory you used:
  10916 strings out of 414566
  156387 string characters out of 2905484
- 431688 words of memory out of 3000000
+ 431700 words of memory out of 3000000
  27940 multiletter control sequences out of 15000+200000
  554722 words of font info for 45 fonts, out of 3000000 for 9000
  1348 hyphenation exceptions out of 8191
- 34i,6n,42p,588b,338s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 34i,6n,42p,588b,393s stack positions out of 5000i,500n,10000p,200000b,50000s
 
-Output written on openloop.pdf (6 pages).
+Output written on openloop.pdf (7 pages).
