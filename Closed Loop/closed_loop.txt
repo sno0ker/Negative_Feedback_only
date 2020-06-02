@@ -1,0 +1,154 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage[portuguese]{babel}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{bookmark}
+\usepackage{float}
+\graphicspath{ {./img/} }
+\begin{document}
+
+\title{Malha Fechada}
+\maketitle
+
+\section{Modelo de simulação}
+\begin{figure}[!h]
+\begin{center}
+\includegraphics[width=14cm]{mod_sim.png}
+\caption{Diagrama de blocos}
+\label{fig1.1}
+\end{center}
+\end{figure}
+\begin{figure}[!h]
+\includegraphics[width=16cm]{param.png}
+\caption{Inicialização de parâmetros e matrizes}
+\label{fig1.2}
+\end{figure}
+
+\pagebreak
+\section{Simulações}
+Inicialmente programou-se o sistema contínuo em malha fechada no simulink \ref{fig1.1}. De seguida definiram-se valores de referência iniciais para as variáveis de saída na figura \ref{fig2}.
+
+\begin{center}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=9cm]{step.png}
+\caption{Definição dos degraus de referência para a as variáveis de saída}
+\label{fig2}
+\end{figure}
+\end{center}
+
+\subsection{Simulação do Controlador Proporcional}
+Começou-se por simular o controlador apenas proporcional. Realizaram-se duas simulações Kp = 1 (figura \ref{prop1}) e Kp = 2 (figura \ref{prop2}), verificando-se que o aumento do ganho proporcional provocou uma resposta mais rápida do sistema atingindo-se o regime permanente da variáveis h1 e h2 mais cedo, à custa de valores mais elevados das entradas qi1 e qi2 (que até atingiram o limite de saturação imposto). A variável h3 não foi afetada pois como se verificou esta variável não depende do valor da sua referência e atinge sempre o valor de h2 em steady state. Note-se que para se conseguir controlar h3 seria necessário introduzir uma outra entrada qi3 ou então uma nova saída de água no tanque 3. Por outro lado, dados os valores das resistências hidraúlicas, mesmo que o valor de referência do tanque 2 seja menor que o do tanque 1, o tanque 2 nunca poderá encher menos que o tanque 1.
+
+\begin{center}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=15cm]{so_proporcional_1.png}
+\caption{Simulação do Controlador proporcional (Kp = 1)}
+\label{prop1}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=15cm]{so_proporcional_2.png}
+\caption{Simulação do Controlador proporcional (Kp = 2)}
+\label{prop2}
+\end{figure}
+\end{center}
+
+\pagebreak
+
+\subsection{Simulação do Controlador proporcional e integral}
+
+A  segunda simulação baseou-se no controlador proporcional-integral. Com os testes realizados reparou-se que a simulação com Kp = 1 e Ki = 0.1 na figura \ref{pi1} não causava overshoot das variáveis de saída mas causava algum erro em regime permanente. Por outro lado, aumentando Ki para 0.2 na figura \ref{pi2}, não existiu erro em steady state mas passou a existir overshoot. Para além disso, na figura \ref{pi3} constatou-se que o aumento da constante proporcional (Kp = 2) para o mesmo Ki da figura \ref{pi2} (Ki = 0.2) retirava o overshhot das variáveis de saída e aumentava a velocidade de resposta do sistema, atingindo-se o regime permanente em menos tempo.
+
+\begin{center}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=15cm]{pi_kp_1_ki_01.png}
+\caption{Simulação do Controlador proporcional-integral (Kp = 1 e Ki = 0.1)}
+\label{pi1}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=14cm]{pi_kp_1_ki_02.png}
+\caption{Simulação do Controlador proporcional-integral (Kp = 1 e Ki = 0.2)}
+\label{pi2}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=14cm]{pi_kp2_ki02.png}
+\caption{Simulação do Controlador proporcional-integral (Kp = 2 e Ki = 0.2)}
+\label{pi3}
+\end{figure}
+\end{center}
+
+\pagebreak
+
+\subsection{Simulação do Controlador proporcional e derivativo}
+
+Com a simulação do controlador proporcional-derivativo observou-se que a introdução da parte derivativa causava oscilações das variáveis qi1 e qi2 face à simulação apenas proporcional na figura \ref{pd1} e que para Kp = 1 já se verificava saturação nas variáveis de entrada. Ora, o aumento desta constante derivativa aumenta ainda mais as oscilações das variáveis qi1 e qi2 (figura \ref{pd2}). Verificou-se também que o aumento da constante proporcional não afeta muito as ocilações existentes mas que para o valor de Kp = 2 (com Kd = 0.5) as oscilções de qi1 quase que desaparecem (figura \ref{pd3}).
+
+\begin{center}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=15cm]{pd_d01.png}
+\caption{Simulação do Controlador proporcional-derivativo (Kp = 1 e Kd = 0.1)}
+\label{pd1}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=14cm]{pd_d05.png}
+\caption{Simulação do Controlador proporcional-derivativo (Kp = 1 e Kd = 0.5)}
+\label{pd2}
+\end{figure}
+\end{center}
+
+\begin{center}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=14cm]{pd_d05_kp2.png}
+\caption{Simulação do Controlador proporcional-derivativo (Kp = 2 e Kd = 0.5)}
+\label{pd3}
+\end{figure}
+\end{center}
+
+\pagebreak
+\subsection{Simulação do Controlador PID}
+A última simulação efetuada foi a do controlador PID. Do mesmo modo que na simulação do controlador PD o aumento da constante proporcional causa oscilações nas variáveis qi1 e qi2. O caso ótimo foi obtido para os valores das constantes que se encontram na figura \ref{pid}.
+
+\begin{center}
+\begin{figure}[!h]
+\centering
+\includegraphics[width=14cm]{PID.png}
+\caption{Simulação do Controlador PID (Kp = 2 e Ki = 0.2 e Kd = 0.1)}
+\label{pid}
+\end{figure}
+\end{center}
+
+\pagebreak
+
+\section{Conclusão}
+Com as simulações efetuadas, foi possível tirar algumas conclusões:
+\begin{itemize}
+\item A simulação ideal, ou seja com melhores resultados em termos de overshoot, velocidade de resposta e oscilações é o controlador PI com Kp = 2 e Ki = 0.2;
+\item Não é possível controlar a variável h3 (altura do terceiro tanque) sem introduzir mais uma entrada (torneira 3) ou mais uma saída de água no tanque 3;
+\item Apesar de h2 ser controlável, este valor nunca pode estar abaixo de h1 dado a limitações físicas do sistema;
+\end{itemize}
+
+\end{document}
